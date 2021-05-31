@@ -6,7 +6,7 @@ float pedirDatokm(string);
 
 int pedirDato(string);
 
-float velocidadMedia(float, int, int);
+float porcentajeDeReduccion(int, int);
 
 int main()
 {
@@ -48,7 +48,7 @@ int main()
     cout << "La vuelta más lenta fue la nº " << masLenta
          << " y su tiempo es de " << tiempoMasLenta / 100 << ":" << tiempoMasLenta % 100 << " minutos" << endl;
 
-    cout << "Porcentaje de reducción de tiempo: " << velocidadMedia(kmCircuito, tiempoMasRapida, tiempoMasLenta) << endl;
+    cout << "Porcentaje de reducción de tiempo: " << porcentajeDeReduccion(tiempoMasRapida, tiempoMasLenta) << endl;
 
     return 0;
 }
@@ -69,17 +69,16 @@ int pedirDato(string mensaje)
     return numero;
 }
 
-float velocidadMedia(float kmCircuito, int tiempoMasRapida, int tiempoMasLenta)
+float porcentajeDeReduccion(int tiempoMasRapida, int tiempoMasLenta)
 {
 
-    float velocidad = 0;
-    float mtsCircuito = kmCircuito * 1000;
+    float porcentajeDeReduc = 0;
 
     int tiempoMasRapidaSeg = (tiempoMasRapida / 100) * 60 + (tiempoMasRapida % 100);
 
     int tiempoMasLentaSeg = (tiempoMasLenta / 100) * 60 + (tiempoMasLenta % 100);
 
-    velocidad = (float)tiempoMasLentaSeg / tiempoMasRapidaSeg - 1;
+    porcentajeDeReduc = (float)tiempoMasLentaSeg / tiempoMasRapidaSeg - 1;
 
-    return velocidad;
+    return porcentajeDeReduc;
 }
