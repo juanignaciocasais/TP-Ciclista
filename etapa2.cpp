@@ -19,14 +19,17 @@ typedef struct
 
 float pedirDatokm(string);
 
-void pedirFecha(ST_FECHA fecha)
+ST_FECHA pedirFecha()
 {
+  ST_FECHA fecha;
   cout << "Ingrese día de entrenamiento: " << endl;
   cin >> fecha.dia;
   cout << "Ingrese mes de entrenamiento: " << endl;
   cin >> fecha.mes;
   cout << "Ingrese año de entrenamiento: " << endl;
   cin >> fecha.anio;
+
+  return fecha;
 }
 
 float calcularVelocidadMedia(float kmCircuito, int tiempoVuelta)
@@ -77,17 +80,7 @@ int main()
   ST_ENTRENAMIENTO entrenamiento[VUELTAS];
 
   // Instanciar estructura fecha y cargarla 1 vez para todo el entrenamiento
-  ST_FECHA fecha;
-
-  //***********TODO revisar funcion pedirfecha()*****************
-
-  //pedirFecha(fecha);
-  cout << "Ingrese día de entrenamiento: " << endl;
-  cin >> fechaEntrenamiento.dia;
-  cout << "Ingrese mes de entrenamiento: " << endl;
-  cin >> fechaEntrenamiento.mes;
-  cout << "Ingrese año de entrenamiento: " << endl;
-  cin >> fechaEntrenamiento.anio;
+  ST_FECHA fecha = pedirFecha();
 
   // Cargar 20 vueltas
   for (int i = 0; i < VUELTAS; i++)
