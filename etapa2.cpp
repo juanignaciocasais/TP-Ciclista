@@ -1,5 +1,6 @@
 #include <iostream>
 using namespace std;
+
 #define VUELTAS 10
 
 typedef struct
