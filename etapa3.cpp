@@ -7,6 +7,10 @@
     a. Cúal fue el entrenamiento con la vuelta más rápida y su tiempo. Debe mostrar también
     los datos de la vuelta correspondiente
     b. Cúal fue el entrenamiento con la vuelta más lenta y su tiempo.
+
+    DATOS PARA PRUEBAS:
+    3.5 01 2021 1 5 0320 6 0400 4 0312 3 0315 2 0322 1 0400 7 0340 8 0329 9 0349 10 0310 3 5 0420 4 0412 3 0215 7 0350 2 0100 1 0410 9 0319 10 0310 8 0309 6 0430 2 4 0422 3 0245 7 0350 2 0522 1 0410 9 0319 10 0350 8 0309 6 0330 5 0420
+
 */
 
 #include <iostream>
@@ -180,24 +184,15 @@ void buscarVueltaMasLentaMes(ST_MES mesEntrenamiento[MAX_DIAS], int diasDelMes, 
             
 }
 
-void imprimirVuelta(ST_ENTRENAMIENTO entrenamiento[VUELTAS], int nroVuelta)
+void imprimirVuelta(ST_MES mesEntrenamiento[VUELTAS], int nroVuelta, int dia)
 {
     cout << "Vuelta nro: " << nroVuelta << endl;
-    cout << "Tiempo: " << entrenamiento[nroVuelta - 1].tiempoVuelta << endl;
-    cout << "Fecha de entrenamiento: " << entrenamiento[nroVuelta - 1].fecha.dia
-         << "/" << entrenamiento[nroVuelta - 1].fecha.mes
-         << "/" << entrenamiento[nroVuelta - 1].fecha.anio << endl;
-    cout << "Velocidad media de la vuelta: " << entrenamiento[nroVuelta - 1].velocidadMedia << endl;
+    cout << "Tiempo: " << mesEntrenamiento[dia - 1].entrenamiento[nroVuelta - 1].tiempoVuelta << endl;
+    cout << "Fecha de entrenamiento: " << mesEntrenamiento[dia - 1].entrenamiento[nroVuelta - 1].fecha.dia
+         << "/" << mesEntrenamiento[dia - 1].entrenamiento[nroVuelta - 1].fecha.mes
+         << "/" << mesEntrenamiento[dia - 1].entrenamiento[nroVuelta - 1].fecha.anio << endl;
+    cout << "Velocidad media de la vuelta: " << mesEntrenamiento[dia - 1].entrenamiento[nroVuelta - 1].velocidadMedia << endl;
 }
-
-/*
-3.5 01 2021 1 5 0320 6 0400 4 0312 3 0315 2 0322 1 0400 7 0340 8 0329 9 0349 10 0310 3 5 0420 4 0412 3 0215 7 0350 2 0100 1 0410 9 0319 10 0310 8 0309 6 0430 2 4 0422 3 0245 7 0350 2 0522 1 0410 9 0319 10 0350 8 0309 6 0330 5 0420
-
-
-
-
-
-*/
 
 int main()
 {
@@ -258,7 +253,7 @@ int main()
     buscarVueltaMasLentaMes(mesEntrenamiento, diasDelMes, vueltaMasLentaMes, tiempoMasLentaMes, diaVueltaMasLentaMes);
 
     cout << "La vuelta mas rápida del mes es la Nº: " << vueltaMasRapidaMes << endl;
-    cout << "Dia: " << diaVueltaMasRapidaMes << endl;
+    cout << "Del día: " << diaVueltaMasRapidaMes << endl;
     cout << "Tiempo: " << mesEntrenamiento[diaVueltaMasRapidaMes - 1].entrenamiento[vueltaMasRapidaMes - 1].tiempoVuelta << endl;
     cout << "Velocidad media: " << mesEntrenamiento[diaVueltaMasRapidaMes - 1].entrenamiento[vueltaMasRapidaMes - 1].velocidadMedia<< endl;
 
@@ -267,13 +262,20 @@ int main()
     cout << "Tiempo: " << mesEntrenamiento[diaVueltaMasLentaMes - 1].entrenamiento[vueltaMasLentaMes - 1].tiempoVuelta << endl;
     cout << "Velocidad media: " << mesEntrenamiento[diaVueltaMasLentaMes - 1].entrenamiento[vueltaMasLentaMes - 1].velocidadMedia<< endl;
 
-/*
+
     // Buscar vueltas
     int nroVuelta;
-    cout << "Ingrese número de vuelta a imprimir: " << endl;
-    cin >> nroVuelta;
-    imprimirVuelta(entrenamiento, nroVuelta);
-*/
+    int dia;
+    cout << "Ingrese el día de vuelta a imprimir (ó 0 para terminar): " << endl;
+    cin >> dia;
+    while(dia != 0){
+        cout << "Ingrese número de vuelta a imprimir: " << endl;
+        cin >> nroVuelta;
+        imprimirVuelta(mesEntrenamiento, nroVuelta, dia);
+        cout << "Ingrese el día de vuelta a imprimir (ó 0 para terminar): " << endl;
+        cin >> dia;
+    }
+
     return 0;
 }
 
