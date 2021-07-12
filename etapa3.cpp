@@ -199,7 +199,7 @@ int main()
     int anio = 0;
     int mes = 0;
     //Suponemos que no es un año bisiesto.
-    int VecDiasDelMes[12] = {3, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+    int VecDiasDelMes[12] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
     int diasDelMes = 0;
     // Ingresar kilometros del circuito
     float kmCircuito = 0;
@@ -242,7 +242,7 @@ int main()
         mesEntrenamiento[j].tiempoMasRapida = entrenamiento[0].tiempoVuelta;
         ordenarXNumVuelta(entrenamiento);
         for(int i = 0; i < VUELTAS; i++){
-            mesEntrenamiento[j].entrenamiento[i] = entrenamiento[i];
+            mesEntrenamiento[j].entrenamiento[i] = entrenamiento[i]; // Cargamos el vector mes entrenamiento con las vueltas de el día j
         }
     }
 
